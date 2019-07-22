@@ -1,0 +1,32 @@
+[
+    {
+        "title":"3D Helmet Design",
+        "subtitle":"Client Project",
+        "image":{"src":"../img/gallery/project-1.jpg"}
+    },
+    {
+        "title":"2D Vinyl Design",
+        "subtitle":"Client Project",
+        "image":{"src":"../img/gallery/project-2.jpg"}
+    },
+    {
+        "title":"Creative Poster Design",
+        "subtitle":"Client Project",
+        "image":{"src":"../img/gallery/project-3.jpg"}
+    },
+    {
+        "title":"Embosed Logo Design",
+        "subtitle":"Client Project",
+        "image":{"src":"../img/gallery/project-4.jpg"}
+    },
+    {
+        "title":"3D Disposable Bottle",
+        "subtitle":"Client Project",
+        "image":{"src":"../img/gallery/project-5.jpg"}
+    },
+    {
+        "title":"3D Logo Design",
+        "subtitle":"Client Project",
+        "image":{"src":"../img/gallery/project-6.jpg"}
+    }
+]

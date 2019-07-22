@@ -1,14 +1,33 @@
 import React from 'react'
 import personalImage from '../../img/personal.jpg'
+import { graphql, useStaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
+
+
+const query= graphql`
+query {
+    file(relativePath: {eq: "personal.jpg"}) {
+      id
+      childImageSharp {
+        fluid{
+            ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+  }
+  `
 
 const Profile = () => {
+	const {file} = useStaticQuery(query)
+    // console.log(file.childImageSharp.fixed);
     return (
         <section class="profile_area">
            	<div class="container">
            		<div class="profile_inner p_120">
 					<div class="row">
 						<div class="col-lg-5">
-							<img class="img-fluid" src={personalImage} alt=""/>
+							<Img fluid={file.childImageSharp.fluid}></Img>
+							{/* <img class="img-fluid" src={personalImage} alt=""/> */}
 						</div>
 						<div class="col-lg-7">
 							<div class="personal_text">

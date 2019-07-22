@@ -6,9 +6,38 @@ import project3 from '../../img/gallery/project-3.jpg'
 import project4 from '../../img/gallery/project-4.jpg'
 import project5 from '../../img/gallery/project-5.jpg'
 import project6 from '../../img/gallery/project-6.jpg'
+import {graphql, useStaticQuery} from 'gatsby'
+import GalleryImage from './GalleryImage';
+
+const query = graphql`
+query {
+    allGalleryJson {
+      edges {
+        node {
+          subtitle
+          title
+          image {
+            src {
+              childImageSharp {
+                id
+                fixed(width:340, height:340) {
+                    ...GatsbyImageSharpFixed_tracedSVG
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+`
+
 
 
 const HomeGallery = () => {
+    const {allGalleryJson} = useStaticQuery(query)
+    console.log(allGalleryJson)
     return (
         <section className="home_gallery_area p_120">
             <div className="container">
@@ -28,7 +57,10 @@ const HomeGallery = () => {
             </div>
             <div className="container">
                 <div className="gallery_f_inner row imageGallery1">
-                    <div className="col-lg-4 col-md-4 col-sm-6 brand manipul design print">
+                    {allGalleryJson.edges.map(el => (
+                       <GalleryImage data={el.node}></GalleryImage> 
+                    ))}
+                    {/* <div className="col-lg-4 col-md-4 col-sm-6 brand manipul design print">
                         <div className="h_gallery_item">
                             <div className="g_img_item">
                                 <img className="img-fluid" src={project1} alt="" />
@@ -99,8 +131,8 @@ const HomeGallery = () => {
                                 <p>Client Project</p>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div> */}
+                </div> 
                 <div className="more_btn">
                     <a className="main_btn" href="#">Load More Items</a>
                 </div>

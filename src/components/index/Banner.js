@@ -1,7 +1,27 @@
 import React from 'react'
 import personalImage from '../../img/personal.jpg'
+import { graphql, useStaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
+
+const query= graphql`
+query personalImage {
+    file(relativePath: {eq: "personal.jpg"}) {
+      id
+      childImageSharp {
+        fixed(width: 670, height:690) {
+            ...GatsbyImageSharpFixed_tracedSVG
+        }
+      }
+    }
+  }
+  `
 
 const Banner = () => {
+    // console.log('works');
+    
+    const {file} = useStaticQuery(query)
+    console.log(file.childImageSharp.fixed);
+    
     return (
         <section className="home_banner_area">
             <div className="container box_1620">
@@ -9,7 +29,7 @@ const Banner = () => {
                     <div className="banner_content">
                         <div className="media">
                             <div className="d-flex">
-                                <img src={personalImage}/>
+                                <Img fixed={file.childImageSharp.fixed}></Img>
                             </div>
                             <div className="media-body">
                                 <div className="personal_text">
